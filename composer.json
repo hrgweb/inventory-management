@@ -1,0 +1,17 @@
+{
+    "name": "hrgweb/sales_and_inventory",
+    "description": "Sales and Inventory package.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Hrgweb\\SalesAndInventory\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hergen Roque Gamayon",
+            "email": "gamayonhergenroque.web@gmail.com"
+        }
+    ],
+    "require": {}
+}
