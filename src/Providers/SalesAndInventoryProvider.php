@@ -10,5 +10,8 @@ class SalesAndInventoryProvider extends ServiceProvider
     {
         // Routes
         $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+
+        // Migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
     }
 }
