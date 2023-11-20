@@ -13,7 +13,9 @@
       "email": "gamayonhergenroque.web@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "spatie/laravel-data": "*"
+  },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "extra": {
