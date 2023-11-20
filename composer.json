@@ -16,5 +16,12 @@
   "version": "1.0.2",
   "require": {},
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hrgweb\\SalesAndInventory\\Providers\\SalesAndInventoryProvider"
+      ]
+    }
+  }
 }
