@@ -13,7 +13,6 @@
       "email": "gamayonhergenroque.web@gmail.com"
     }
   ],
-  "version": "1.0.2",
   "require": {},
   "minimum-stability": "dev",
   "prefer-stable": true,
