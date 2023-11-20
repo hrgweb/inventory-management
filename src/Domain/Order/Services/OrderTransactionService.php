@@ -2,7 +2,7 @@
 
 namespace Hrgweb\SalesAndInventory\Domain\Order\Services;
 
-use App\Models\OrderTransaction;
+use Hrgweb\SalesAndInventory\Models\OrderTransaction;
 use Exception;
 
 class OrderTransactionService

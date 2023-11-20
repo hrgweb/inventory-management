@@ -2,7 +2,7 @@
 
 namespace Hrgweb\SalesAndInventory\Domain\Category\Services;
 
-use App\Models\Category;
+use Hrgweb\SalesAndInventory\Models\Category;
 use Exception;
 use Hrgweb\SalesAndInventory\Domain\Category\Data\CategoryData;
 use Illuminate\Support\Facades\Log;

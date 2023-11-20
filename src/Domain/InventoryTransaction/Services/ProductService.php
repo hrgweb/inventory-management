@@ -3,10 +3,10 @@
 namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Services;
 
 use Exception;
-use App\Models\Product;
+use Hrgweb\SalesAndInventory\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Models\InventoryTransaction;
+use Hrgweb\SalesAndInventory\Models\InventoryTransaction;
 use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Class\Directory;
 use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
 use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\InventoryTransactionData;

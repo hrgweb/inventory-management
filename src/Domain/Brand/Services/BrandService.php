@@ -3,7 +3,7 @@
 namespace Hrgweb\SalesAndInventory\Domain\Brand\Services;
 
 use Exception;
-use App\Models\Brand;
+use Hrgweb\SalesAndInventory\Models\Brand;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Brand\Data\BrandData;
 

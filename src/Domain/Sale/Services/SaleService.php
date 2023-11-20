@@ -3,9 +3,9 @@
 namespace Hrgweb\SalesAndInventory\Domain\Sale\Services;
 
 use Exception;
-use App\Models\Sale;
-use App\Models\Order;
-use App\Models\OrderTransaction;
+use Hrgweb\SalesAndInventory\Models\Sale;
+use Hrgweb\SalesAndInventory\Models\Order;
+use Hrgweb\SalesAndInventory\Models\OrderTransaction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

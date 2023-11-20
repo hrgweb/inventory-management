@@ -4,7 +4,7 @@ namespace Hrgweb\SalesAndInventory\Domain\Order\Services;
 
 use Exception;
 use Carbon\Carbon;
-use App\Models\Order;
+use Hrgweb\SalesAndInventory\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
 

@@ -3,7 +3,7 @@
 namespace Hrgweb\SalesAndInventory\Domain\Supplier\Services;
 
 use Exception;
-use App\Models\Supplier;
+use Hrgweb\SalesAndInventory\Models\Supplier;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Data\SupplierData;
 
