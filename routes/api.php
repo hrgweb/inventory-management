@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Hrgweb\SalesAndInventory\Controllers\SaleController;
 use Hrgweb\SalesAndInventory\Controllers\BrandController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
+use Hrgweb\SalesAndInventory\Controllers\ProductController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Controllers\InventoryTransactionController;
@@ -27,4 +28,7 @@ Route::prefix('api')->group(function () {
 
     // Sale
     Route::post('/sales', [SaleController::class, 'store']);
+
+    // Product
+    Route::get('/products/{productOrBarcode}', [ProductController::class, 'show']);
 });

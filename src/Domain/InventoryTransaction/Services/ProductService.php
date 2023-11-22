@@ -60,4 +60,17 @@ class ProductService
 
         return InventoryTransactionData::from(array_merge($inventoryTransaction->toArray(), ['product' => ProductData::from($product)]))->additional(['created_at' => $inventoryTransaction->created_at]);
     }
+
+    public function search(string $productOrBarcode): array
+    {
+        $result = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
+            ->orWhereRaw('barcode like ?', [$productOrBarcode])
+            ->first();
+
+        if (!$result) {
+            return ProductData::empty();
+        }
+
+        return ProductData::from($result)->toArray();
+    }
 }
