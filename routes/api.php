@@ -20,7 +20,7 @@ Route::prefix('api')->group(function () {
     Route::post('/brands', [BrandController::class, 'store']);
 
     // Inventory Transaction
-    Route::post('/inventory-transactions/', [InventoryTransactionController::class, 'purchase']);
+    Route::post('/inventory-transactions/', [InventoryTransactionController::class, 'store']);
 
     // Order
     Route::get('/orders', [OrderController::class, 'index']);
