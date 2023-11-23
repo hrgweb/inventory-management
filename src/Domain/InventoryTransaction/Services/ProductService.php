@@ -3,6 +3,7 @@
 namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Services;
 
 use Exception;
+use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
 use Hrgweb\SalesAndInventory\Models\Product;
 use Illuminate\Support\Facades\Log;
 class ProductService
@@ -16,7 +17,7 @@ class ProductService
         return new static(...$params);
     }
 
-    public function save(): Product
+    public function save(): ProductData
     {
         $product = Product::create($this->request['product']);
 
@@ -26,7 +27,7 @@ class ProductService
 
         Log::info('new product (' . $product->name . ') saved.');
 
-        return $product;
+        return ProductData::from($product);
     }
 
 
