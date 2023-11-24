@@ -3,9 +3,10 @@
 namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Services;
 
 use Exception;
-use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
-use Hrgweb\SalesAndInventory\Models\Product;
 use Illuminate\Support\Facades\Log;
+use Hrgweb\SalesAndInventory\Models\Product;
+use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
+
 class ProductService
 {
     public function __construct(protected array $request = [])
@@ -31,12 +32,16 @@ class ProductService
     }
 
 
-    public function search(string $productOrBarcode): bool
+    public function search(string $productOrBarcode): ProductData
     {
-        $result = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
+        $product = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
             ->orWhereRaw('barcode like ?', [$productOrBarcode])
             ->first();
 
-        return $result ? true : false;
+        if (!$product) {
+            throw new Exception('no product found base on product name or barcode.');
+        }
+
+        return ProductData::from($product);
     }
 }

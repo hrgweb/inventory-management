@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductOrderController;
 use Illuminate\Support\Facades\Route;
 use Hrgweb\SalesAndInventory\Controllers\SaleController;
 use Hrgweb\SalesAndInventory\Controllers\BrandController;
@@ -31,4 +32,7 @@ Route::prefix('api')->group(function () {
 
     // Product
     Route::get('/products/{productOrBarcode}', [ProductController::class, 'show']);
+
+    // Product Order
+    Route::post('/product-orders', [ProductOrderController::class, 'store']);
 });
