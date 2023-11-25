@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductOrderController;
 use Illuminate\Support\Facades\Route;
 use Hrgweb\SalesAndInventory\Controllers\SaleController;
@@ -35,4 +36,8 @@ Route::prefix('api')->group(function () {
 
     // Product Order
     Route::post('/product-orders', [ProductOrderController::class, 'store']);
+
+    // Inventory
+    Route::get('/inventory/products/', [InventoryController::class, 'products']);
+
 });
