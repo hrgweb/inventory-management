@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductOrderController;
-use Illuminate\Support\Facades\Route;
 use Hrgweb\SalesAndInventory\Controllers\SaleController;
 use Hrgweb\SalesAndInventory\Controllers\BrandController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
@@ -10,8 +10,17 @@ use Hrgweb\SalesAndInventory\Controllers\ProductController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Controllers\InventoryTransactionController;
+use Hrgweb\SalesAndInventory\Domain\Inventory\Services\InventoryService;
+use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderTransactionService;
 
 Route::prefix('api')->group(function () {
+    Route::get('/data', function () {
+        return [
+            'transactin_session' => OrderTransactionService::generate(),
+            'products' => InventoryService::products()
+        ];
+    });
+
     // Category
     Route::post('/categories', [CategoryController::class, 'store']);
 
@@ -39,5 +48,4 @@ Route::prefix('api')->group(function () {
 
     // Inventory
     Route::get('/inventory/products/', [InventoryController::class, 'products']);
-
 });
