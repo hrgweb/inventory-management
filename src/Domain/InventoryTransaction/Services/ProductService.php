@@ -32,16 +32,16 @@ class ProductService
     }
 
 
-    public function search(string $productOrBarcode): array
+    public function search(string $productOrBarcode): mixed
     {
         $product = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
             ->orWhereRaw('barcode like ?', [$productOrBarcode])
             ->first();
 
         if (!$product) {
-            return ProductData::empty();
+            return null;
         }
 
-        return ProductData::from($product)->toArray();
+        return ProductData::from($product);
     }
 }
