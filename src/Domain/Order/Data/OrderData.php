@@ -12,7 +12,6 @@ class OrderData extends Data
         public string $order_transaction_session,
         public ?int $customer_id,
         public int $product_id,
-        public ?string $barcode,
         public ?string $product_name,
         public ?string $product_description,
         public ?float $selling_price,
