@@ -32,16 +32,16 @@ class ProductService
     }
 
 
-    public function search(string $productOrBarcode): ProductData
+    public function search(string $productOrBarcode): array
     {
         $product = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
             ->orWhereRaw('barcode like ?', [$productOrBarcode])
             ->first();
 
         if (!$product) {
-            throw new Exception('no product found base on product name or barcode.');
+            return ProductData::empty();
         }
 
-        return ProductData::from($product);
+        return ProductData::from($product)->toArray();
     }
 }
