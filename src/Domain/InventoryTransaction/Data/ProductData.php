@@ -20,7 +20,7 @@ class ProductData extends Data
         public ?string $barcode,
         public ?float $tax_rate,
         public ?float $discount,
-        public bool $is_available,
+        public ?bool $is_available,
         public ?string $product_image_url,
         public ?float $weight,
         public ?string $dimensions,
@@ -29,5 +29,6 @@ class ProductData extends Data
         $this->category_id = 1;
         $this->brand_id = 1;
         $this->supplier_id = 1;
+        $this->is_available = true;
     }
 }
