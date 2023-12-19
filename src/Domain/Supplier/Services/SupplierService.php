@@ -18,6 +18,11 @@ class SupplierService
         return new static(...$params);
     }
 
+    public static function fetch(): mixed
+    {
+        return SupplierData::collection(Supplier::paginate(10));
+    }
+
     public function save()
     {
         $supplier =  Supplier::create($this->request);

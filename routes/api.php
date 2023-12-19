@@ -20,8 +20,7 @@ Route::prefix('api')->group(function () {
 
         return [
             'transaction_session' => $session,
-            'products' => InventoryService::products(),
-            'orders' => OrderService::list($session)
+            // 'orders' => OrderService::list($session),
         ];
     });
 
@@ -29,6 +28,7 @@ Route::prefix('api')->group(function () {
     Route::post('/categories', [CategoryController::class, 'store']);
 
     // Supplier
+    Route::get('/suppliers', [SupplierController::class, 'index']);
     Route::post('/suppliers', [SupplierController::class, 'store']);
 
     // Brand

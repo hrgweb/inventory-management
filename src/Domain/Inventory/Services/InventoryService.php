@@ -9,7 +9,7 @@ class InventoryService
 {
     public static function products(): mixed
     {
-        // return ProductData::collection(Product::paginate(10));
-        return ProductData::collection(Product::all());
+        return ProductData::collection(Product::paginate(10));
+        // return ProductData::collection(Product::all());
     }
 }
