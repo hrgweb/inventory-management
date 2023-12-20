@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order_transaction_session')->index();
-
-            $table->unsignedBigInteger('customer_id')->index();
-            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
+            $table->string('transaction_session_no')->index();
 
             $table->unsignedBigInteger('product_id')->index();
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
@@ -28,18 +25,9 @@ return new class extends Migration
             $table->integer('qty')->nullable();
             $table->decimal('subtotal', 15, 2)->nullable();
 
-            $table->timestamp('order_date')->nullable();
-            $table->timestamp('ship_date')->nullable();
-            $table->text('ship_address')->nullable();
-            $table->string('ship_city')->nullable();
-            $table->string('ship_region')->nullable();
-            $table->string('ship_country')->nullable();
-            $table->string('ship_postal_code')->nullable();
-            $table->string('order_status')->nullable();   // (e.g., pending, processing, shipped, delivered).
-            $table->decimal('total_amount', 15, 2);
-            $table->string('payment_method');   // (e.g., credit card, PayPal).
-            $table->string('payment_status');   // (e.g., paid, pending, declined).
-            $table->string('promotion_code')->nullable();   // (e.g., paid, pending, declined).
+            $table->enum('status', ['pending', 'completed', ])->nullable();   // (e.g., pending, completed).
+            $table->enum('payment_method', ['cash', 'debit card', 'credit card']);   // (e.g., credit card, debit card, cash).
+            $table->enum('payment_status', ['paid', 'pending', 'decline']);   // (e.g., paid, pending, declined).
             $table->text('notes')->nullable();
             $table->timestamps();
         });

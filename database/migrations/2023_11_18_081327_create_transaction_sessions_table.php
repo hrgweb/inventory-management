@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_transactions', function (Blueprint $table) {
+        Schema::create('transaction_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_session')->index();
+            $table->string('session_no')->index();
             $table->string('status')->default('pending');    // eg. pending, completed
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_transactions');
+        Schema::dropIfExists('transaction_sessions');
     }
 };
