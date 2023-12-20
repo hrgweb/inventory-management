@@ -1,19 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
 use Hrgweb\SalesAndInventory\Controllers\SaleController;
 use Hrgweb\SalesAndInventory\Controllers\BrandController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
-use Hrgweb\SalesAndInventory\Controllers\ProductController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
+use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
+use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
 use Hrgweb\SalesAndInventory\Controllers\InventoryTransactionController;
 use Hrgweb\SalesAndInventory\Domain\Inventory\Services\InventoryService;
-use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderTransactionService;
-use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function () {
@@ -34,7 +33,7 @@ Route::prefix('api')->group(function () {
     Route::post('/suppliers', [SupplierController::class, 'store']);
 
     // Brand
-    Route::post('/brands', [BrandController::class, 'store']);
+    // Route::post('/brands', [BrandController::class, 'store']);
 
     // Inventory Transaction
     Route::post('/inventory-transactions/', [InventoryTransactionController::class, 'store']);
@@ -46,9 +45,9 @@ Route::prefix('api')->group(function () {
     // Sale
     Route::post('/sales', [SaleController::class, 'store']);
 
-    // Product Order
+    // Order
     Route::get('/product-orders', [ProductOrderController::class, 'viaSearchOrBarcode']);
 
-    // Inventory
-    Route::get('/inventory/products/', [InventoryController::class, 'products']);
+    // Product
+    Route::get('/products/', [ProductController::class, 'index']);
 });

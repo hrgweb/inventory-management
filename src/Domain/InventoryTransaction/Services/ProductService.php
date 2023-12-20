@@ -4,6 +4,7 @@ namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Builder;
 use Hrgweb\SalesAndInventory\Models\Product;
 use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
 
@@ -32,16 +33,18 @@ class ProductService
     }
 
 
-    public function search(string $productOrBarcode): mixed
+    public function fetch(): mixed
     {
-        $product = Product::whereRaw('name like ?', [$productOrBarcode . '%'])
-            ->orWhereRaw('barcode like ?', [$productOrBarcode])
-            ->first();
+        $search = $this->request['search'] ?? '';
 
-        if (!$product) {
-            return null;
-        }
-
-        return ProductData::from($product);
+        return ProductData::collection(Product::query()
+            ->when($search, function (Builder $query, string $search) {
+                $query->whereRaw('name like ?', [$search . '%']);
+            })
+            ->when($search, function (Builder $query, string $search) {
+                $query->orWhereRaw('barcode like ?', [$search . '%']);
+            })
+            ->latest('created_at')
+            ->paginate(10));
     }
 }
