@@ -9,6 +9,7 @@ class SupplierData extends Data
     public function __construct(
         public ?int $id,
         public string $name,
+        public ?string $description,
         public ?string $contact_person,
         public ?string $contact_title,
         public ?string $address,

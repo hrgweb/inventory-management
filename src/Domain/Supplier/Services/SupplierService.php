@@ -18,6 +18,11 @@ class SupplierService
         return new static(...$params);
     }
 
+    public static function all(): mixed
+    {
+        return Supplier::select(['id', 'name', 'description'])->get();
+    }
+
     public static function fetch(): mixed
     {
         return SupplierData::collection(Supplier::paginate(10));

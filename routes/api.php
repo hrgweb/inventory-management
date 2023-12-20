@@ -13,6 +13,7 @@ use Hrgweb\SalesAndInventory\Controllers\InventoryTransactionController;
 use Hrgweb\SalesAndInventory\Domain\Inventory\Services\InventoryService;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderTransactionService;
+use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function () {
@@ -20,7 +21,8 @@ Route::prefix('api')->group(function () {
 
         return [
             'transaction_session' => $session,
-            // 'orders' => OrderService::list($session),
+            'orders' => [], // OrderService::list($session),
+            'suppliers' => SupplierService::all()
         ];
     });
 
