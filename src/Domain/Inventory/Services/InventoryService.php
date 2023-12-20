@@ -26,19 +26,9 @@ class InventoryService
                 $query->whereRaw('name like ?', [$search . '%']);
             })
             ->when($search, function (Builder $query, string $search) {
-                $query->whereRaw('name like ?', [$search . '%']);
-            })
-            ->paginate(10));
-            // ->toSql());
-
-        return Product::query()
-            ->when($search, function (Builder $query, string $search) {
-                $query->whereRaw('name like ?', [$search . '%']);
-            })
-            ->when($search, function (Builder $query, string $search) {
                 $query->orWhereRaw('barcode like ?', [$search . '%']);
             })
-            // ->paginate(10));
-            ->toSql();
+            ->latest('created_at')
+            ->paginate(10));
     }
 }
