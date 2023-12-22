@@ -20,6 +20,7 @@ class TransactionData extends Data
         public ?string $notes,
     ) {
         $this->transaction_type ??= TransactionType::PURCHASE;
+        $this->qty_change ??= 0;
         $this->subtotal = $this->cost_price * $this->qty;
     }
 }

@@ -24,7 +24,7 @@ class TransactionService
         return new static(...$params);
     }
 
-    public function purchase()
+    private function purchase()
     {
         // $this->request['product']['barcode'] = BarcodeService::create();
 
