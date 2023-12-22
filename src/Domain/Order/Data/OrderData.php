@@ -17,10 +17,10 @@ class OrderData extends Data
         public ?float $selling_price,
         public ?int $qty,
         public ?float $subtotal,
-        public ?OrderStatus $order_status,
+        public ?OrderStatus $status,
     ) {
-        $this->customer_id ??= 1;
-        $this->order_status ??= OrderStatus::PENDING;
+        // $this->customer_id ??= 1;
+        $this->status ??= OrderStatus::PENDING;
         $this->selling_price ??= 0;
         $this->qty ??= 1;
         $this->subtotal = $this->selling_price * $this->qty;

@@ -13,7 +13,6 @@ class SaleData extends Data
         public string $transaction_session_no,
         #[DataCollectionOf(OrderData::class)]
         public DataCollection $orders,
-        public ?string $notes,
     ) {
     }
 }

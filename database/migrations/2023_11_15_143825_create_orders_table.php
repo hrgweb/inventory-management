@@ -26,8 +26,8 @@ return new class extends Migration
             $table->decimal('subtotal', 15, 2)->nullable();
 
             $table->enum('status', ['pending', 'completed', ])->nullable();   // (e.g., pending, completed).
-            $table->enum('payment_method', ['cash', 'debit card', 'credit card']);   // (e.g., credit card, debit card, cash).
-            $table->enum('payment_status', ['paid', 'pending', 'decline']);   // (e.g., paid, pending, declined).
+            // $table->enum('payment_method', ['cash', 'debit card', 'credit card']);   // (e.g., credit card, debit card, cash).
+            // $table->enum('payment_status', ['paid', 'pending', 'decline']);   // (e.g., paid, pending, declined).
             $table->text('notes')->nullable();
             $table->timestamps();
         });

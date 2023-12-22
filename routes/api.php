@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\TransactionSessionController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
@@ -41,4 +42,7 @@ Route::prefix('api')->group(function () {
     // Order
     Route::get('/orders', [OrderController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
+
+    // Sale
+    Route::post('/sales', [SaleController::class, 'store']);
 });

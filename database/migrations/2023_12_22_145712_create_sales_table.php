@@ -17,8 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
 
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+
             $table->string('transaction_session_no')->index();
-            $table->text('notes')->nullable();
+            $table->string('product_name')->index();
+            $table->string('product_description')->index();
+            $table->unsignedBigInteger('qty')->default(1);
+            $table->decimal('subtotal', 15, 2);
             $table->timestamps();
         });
     }
