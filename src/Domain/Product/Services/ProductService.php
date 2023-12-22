@@ -4,6 +4,7 @@ namespace Hrgweb\SalesAndInventory\Domain\Product\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Builder;
 use Hrgweb\SalesAndInventory\Models\Product;
 use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
 
@@ -18,6 +19,21 @@ class ProductService
         return new static(...$params);
     }
 
+    public function fetch(): mixed
+    {
+        $search = $this->request['search'] ?? '';
+
+        return ProductData::collection(Product::query()
+            ->when($search, function (Builder $query, string $search) {
+                $query->whereRaw('name like ?', [$search . '%']);
+            })
+            ->when($search, function (Builder $query, string $search) {
+                $query->orWhereRaw('barcode like ?', [$search . '%']);
+            })
+            ->latest('created_at')
+            ->paginate(10));
+    }
+
     public function save(): ProductData
     {
         $product = Product::create($this->request);
@@ -30,20 +46,4 @@ class ProductService
 
         return ProductData::from($product);
     }
-
-
-    // public function fetch(): mixed
-    // {
-    //     $search = $this->request['search'] ?? '';
-
-    //     return ProductData::collection(Product::query()
-    //         ->when($search, function (Builder $query, string $search) {
-    //             $query->whereRaw('name like ?', [$search . '%']);
-    //         })
-    //         ->when($search, function (Builder $query, string $search) {
-    //             $query->orWhereRaw('barcode like ?', [$search . '%']);
-    //         })
-    //         ->latest('created_at')
-    //         ->paginate(10));
-    // }
 }
