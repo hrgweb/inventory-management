@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Models\Order;
 use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
-use Spatie\LaravelData\DataCollection;
 
 class OrderService
 {

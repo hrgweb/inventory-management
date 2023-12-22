@@ -9,7 +9,7 @@ class OrderData extends Data
 {
     public function __construct(
         public ?int $id,
-        public string $order_transaction_session,
+        public string $transaction_session_no,
         public ?int $customer_id,
         public int $product_id,
         public ?string $product_name,
