@@ -1,12 +1,11 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Production\Services;
+namespace Hrgweb\SalesAndInventory\Domain\Product\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Builder;
 use Hrgweb\SalesAndInventory\Models\Product;
-use Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data\ProductData;
+use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
 
 class ProductService
 {
@@ -21,7 +20,7 @@ class ProductService
 
     public function save(): ProductData
     {
-        $product = Product::create($this->request['product']);
+        $product = Product::create($this->request);
 
         if (!$product) {
             throw new Exception('no product saved. encountered an error.');

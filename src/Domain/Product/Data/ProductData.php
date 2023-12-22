@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Data;
+namespace Hrgweb\SalesAndInventory\Domain\Product\Data;
 
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
