@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
+use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
+use Hrgweb\SalesAndInventory\Controllers\TransactionController;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
 use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
@@ -15,7 +17,7 @@ Route::prefix('api')->group(function () {
         return [
             'transaction_session' => $session,
             'orders' => [], // OrderService::list($session),
-            // 'suppliers' => SupplierService::all()
+            'suppliers' => SupplierService::all()
         ];
     });
 
@@ -30,11 +32,8 @@ Route::prefix('api')->group(function () {
     // Category
     Route::post('/categories', [CategoryController::class, 'store']);
 
-    // Brand
-    // Route::post('/brands', [BrandController::class, 'store']);
-
     // Transaction
-    Route::post('/transactions/', [InventoryTransactionController::class, 'store']);
+    Route::post('/transactions', [TransactionController::class, 'store']);
 
     // Order
     Route::get('/orders', [OrderController::class, 'index']);

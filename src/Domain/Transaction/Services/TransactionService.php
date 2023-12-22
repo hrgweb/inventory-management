@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
 use Hrgweb\SalesAndInventory\Domain\Sale\Enums\TransactionStatus;
 
-class SaleService
+class TransactionService
 {
     public function __construct(protected array $request = [])
     {
@@ -25,6 +25,8 @@ class SaleService
 
     public function save(): JsonResponse
     {
+        return $this->request;
+
         $orders = collect($this->request['orders']);
         $ordersCount = $orders->count();
 
