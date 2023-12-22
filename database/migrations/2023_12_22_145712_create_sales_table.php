@@ -21,8 +21,9 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
 
             $table->string('transaction_session_no')->index();
-            $table->string('product_name')->index();
-            $table->string('product_description')->index();
+            $table->string('product_name')->index()->nullable();
+            $table->string('product_description')->index()->nullable();
+            $table->decimal('selling_price', 15, 2);
             $table->unsignedBigInteger('qty')->default(1);
             $table->decimal('subtotal', 15, 2);
             $table->timestamps();

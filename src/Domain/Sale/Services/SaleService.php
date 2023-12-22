@@ -6,13 +6,12 @@ use Exception;
 use Hrgweb\SalesAndInventory\Models\Sale;
 use Hrgweb\SalesAndInventory\Models\Order;
 use Hrgweb\SalesAndInventory\Models\TransactionSession;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
 use Hrgweb\SalesAndInventory\Domain\Sale\Enums\TransactionStatus;
 
-class TransactionService
+class SaleService
 {
     public function __construct(protected array $request = [])
     {
@@ -23,10 +22,11 @@ class TransactionService
         return new static(...$params);
     }
 
-    public function save()//: JsonResponse
+    public function save()
     {
         $orders = collect($this->request['orders']);
         $ordersCount = $orders->count();
+        $transactionSessionNo = $this->request['transaction_session_no'];
 
         // no orders made
         if ($ordersCount <= 0) {
@@ -35,20 +35,30 @@ class TransactionService
 
         DB::beginTransaction();
         try {
-            $body = array_merge($this->request, ['total_amount' => $this->total()]);
+            $body = array_merge($this->request, ['grand_total' => $this->total()]);
 
-            // made a sale
-            $sale = Sale::create($body);
+            // dd($body);
 
-            if (!$sale) {
-                throw new Exception('saving order encountered an error');
+            foreach ($body['orders'] as $order) {
+                $order['order_id'] = $order['id'];
+
+                // dd($order);
+
+                // made a sale
+                $sale = Sale::create($order);
+
+                if (!$sale) {
+                    throw new Exception('record to sale encountered an error');
+                }
+
+                // dd('y here');
+
+                // update order status
+                Order::where('transaction_session_no', $transactionSessionNo)->update(['status' => OrderStatus::COMPLETED]);
+
+                // update transaction session no
+                TransactionSession::where('session_no', $transactionSessionNo)->update(['status' => OrderStatus::COMPLETED, 'grand_total' => $body['grand_total']]);
             }
-
-            // update order status
-            Order::where('order_transaction_session', $body['order_transaction_session'])->update(['order_status' => OrderStatus::COMPLETED]);
-
-            // update transaction session
-            TransactionSession::where('transaction_session', $body['order_transaction_session'])->update(['status' => TransactionStatus::COMPLETED]);
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -56,7 +66,7 @@ class TransactionService
         }
         DB::commit();
 
-        Log::info($ordersCount . ' orders was purchased via transaction session (' . $this->request['order_transaction_session'] . ').');
+        Log::info($ordersCount . ' orders was purchased on session no (' . $transactionSessionNo . ').');
 
         return response()->json(true);
     }
