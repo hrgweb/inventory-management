@@ -15,7 +15,7 @@ class TransactionSessionService
 
     public static function new(): string
     {
-        $session = TransactionSession::where('status', OrderStatus::PENDING)->latest('id')->first()?->transaction_session;
+        $session = TransactionSession::where('status', OrderStatus::PENDING)->latest('id')->first()?->session_no;
 
         // if no pending transaction session
         if (!$session) {

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
+use App\Http\Controllers\TransactionSessionController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
@@ -20,6 +21,9 @@ Route::prefix('api')->group(function () {
             'suppliers' => SupplierService::all()
         ];
     });
+
+    // Transaction Session
+    Route::get('/transaction-sessions/create', [TransactionSessionController::class, 'create']);
 
     // Product
     Route::get('/products/', [ProductController::class, 'index']);
