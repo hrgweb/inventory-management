@@ -25,7 +25,7 @@ class TransactionService
 
     public function save()
     {
-        $this->request['product']['barcode'] = BarcodeService::create();
+        // $this->request['product']['barcode'] = BarcodeService::create();
 
         $product = new Product;
         $transaction = new Transaction;
@@ -49,7 +49,7 @@ class TransactionService
         DB::commit();
 
         // generate barcode img
-        BarcodeService::generate($product->name, $product->barcode);
+        // BarcodeService::generate($product->name, $product->barcode);
 
         return TransactionData::from(array_merge($transaction->toArray(), ['product' => ProductData::from($product)]))->additional(['created_at' => $transaction->created_at]);
     }
