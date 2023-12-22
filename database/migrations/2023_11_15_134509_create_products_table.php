@@ -27,12 +27,10 @@ return new class extends Migration
             $table->unsignedBigInteger('stock_qty');
             $table->unsignedBigInteger('reorder_level');
             $table->string('barcode')->nullable()->index();
-            $table->decimal('tax_rate', 15, 2)->nullable();
-            $table->decimal('discount', 15, 2)->nullable();
+            // $table->decimal('tax_rate', 15, 2)->nullable();
+            // $table->decimal('discount', 15, 2)->nullable();
             $table->boolean('is_available')->default(1);
-            $table->string('product_image_url')->nullable();
-            $table->decimal('weight', 15, 2)->nullable();
-            $table->string('dimensions')->nullable();
+            // $table->string('product_image_url')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

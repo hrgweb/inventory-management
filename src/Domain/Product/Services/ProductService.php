@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\InventoryTransaction\Services;
+namespace Hrgweb\SalesAndInventory\Domain\Production\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -33,18 +33,18 @@ class ProductService
     }
 
 
-    public function fetch(): mixed
-    {
-        $search = $this->request['search'] ?? '';
+    // public function fetch(): mixed
+    // {
+    //     $search = $this->request['search'] ?? '';
 
-        return ProductData::collection(Product::query()
-            ->when($search, function (Builder $query, string $search) {
-                $query->whereRaw('name like ?', [$search . '%']);
-            })
-            ->when($search, function (Builder $query, string $search) {
-                $query->orWhereRaw('barcode like ?', [$search . '%']);
-            })
-            ->latest('created_at')
-            ->paginate(10));
-    }
+    //     return ProductData::collection(Product::query()
+    //         ->when($search, function (Builder $query, string $search) {
+    //             $query->whereRaw('name like ?', [$search . '%']);
+    //         })
+    //         ->when($search, function (Builder $query, string $search) {
+    //             $query->orWhereRaw('barcode like ?', [$search . '%']);
+    //         })
+    //         ->latest('created_at')
+    //         ->paginate(10));
+    // }
 }
