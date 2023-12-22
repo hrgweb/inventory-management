@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transaction_sessions', function (Blueprint $table) {
             $table->id();
             $table->string('session_no')->index();
+            $table->decimal('grand_total', 15, 2)->nullable();
             $table->string('status')->default('pending');    // eg. pending, completed
             $table->timestamps();
         });
