@@ -27,8 +27,6 @@ class TransactionService
     {
         $this->request['product']['barcode'] = BarcodeService::create();
 
-        // return $this->request['product'];
-
         $product = new Product;
         $transaction = new Transaction;
 
@@ -36,11 +34,7 @@ class TransactionService
         try {
             $product = ProductService::make($this->request['product'])->save();
 
-            // dd($product);
-
             $transaction = Transaction::create(array_merge($this->request, ['product_id' => $product->id]));
-
-            // dd($transaction);
 
             if (!$transaction) {
                 throw new Exception('no inventory transaction saved. encountered an error');
