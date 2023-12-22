@@ -3,20 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
-use Hrgweb\SalesAndInventory\Controllers\SaleController;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
-use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderTransactionService;
+use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function () {
-        $session  = OrderTransactionService::generate();
+        $session  = TransactionSessionService::new();
 
         return [
             'transaction_session' => $session,
             'orders' => [], // OrderService::list($session),
-            'suppliers' => SupplierService::all()
+            // 'suppliers' => SupplierService::all()
         ];
     });
 

@@ -5,7 +5,7 @@ namespace Hrgweb\SalesAndInventory\Domain\Sale\Services;
 use Exception;
 use Hrgweb\SalesAndInventory\Models\Sale;
 use Hrgweb\SalesAndInventory\Models\Order;
-use Hrgweb\SalesAndInventory\Models\OrderTransaction;
+use Hrgweb\SalesAndInventory\Models\TransactionSession;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -48,7 +48,7 @@ class SaleService
             Order::where('order_transaction_session', $body['order_transaction_session'])->update(['order_status' => OrderStatus::COMPLETED]);
 
             // update transaction session
-            OrderTransaction::where('transaction_session', $body['order_transaction_session'])->update(['status' => TransactionStatus::COMPLETED]);
+            TransactionSession::where('transaction_session', $body['order_transaction_session'])->update(['status' => TransactionStatus::COMPLETED]);
         } catch (Exception $e) {
             DB::rollBack();
 
