@@ -6,5 +6,5 @@ enum TransactionType: string
 {
     case PURCHASE = 'purchase';
     case SALE = 'sale';
-    case ADJUSTMENTS = 'adjustments';
+    case ADJUSTMENTS = 'adjustment';
 }

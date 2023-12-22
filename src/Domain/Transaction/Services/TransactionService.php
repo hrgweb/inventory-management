@@ -11,11 +11,12 @@ use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
 use Hrgweb\SalesAndInventory\Domain\Product\Services\BarcodeService;
 use Hrgweb\SalesAndInventory\Domain\Product\Services\ProductService;
 use Hrgweb\SalesAndInventory\Domain\Transaction\Data\TransactionData;
+use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
 
 class TransactionService
 {
-    public function __construct(protected array $request) {
-
+    public function __construct(protected array $request)
+    {
     }
 
     public static function make(...$params)
@@ -23,7 +24,7 @@ class TransactionService
         return new static(...$params);
     }
 
-    public function save()
+    public function purchase()
     {
         // $this->request['product']['barcode'] = BarcodeService::create();
 
@@ -52,5 +53,16 @@ class TransactionService
         // BarcodeService::generate($product->name, $product->barcode);
 
         return TransactionData::from(array_merge($transaction->toArray(), ['product' => ProductData::from($product)]))->additional(['created_at' => $transaction->created_at]);
+    }
+
+    public function save()
+    {
+        $transaction_type = $this->request['transaction_type'] ??= TransactionType::PURCHASE;
+
+        return match ($transaction_type) {
+            TransactionType::PURCHASE->value => $this->purchase(),
+            TransactionType::SALE->value => 'sale',
+            TransactionType::ADJUSTMENTS->value => 'adjustment'
+        };
     }
 }
