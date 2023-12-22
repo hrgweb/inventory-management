@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+
             $table->unsignedBigInteger('product_id')->index();
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
 
             $table->enum('transaction_type', ['purchase', 'sale', 'adjustment'])->nullable();    // (e.g., "Purchase," "Sale," "Adjustment")
-            $table->decimal('selling_price', 15, 2);
-            $table->integer('qty')->nullable();
-            $table->decimal('subtotal', 15, 2)->nullable();
+            $table->integer('qty_change')->nullable();    //  (positive for additions, negative for deductions)
+            $table->decimal('cost_price', 15, 2)->nullable();
+            $table->decimal('selling_price', 15, 2)->nullable();
+            $table->decimal('total_cost', 15, 2)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
