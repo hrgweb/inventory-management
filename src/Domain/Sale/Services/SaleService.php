@@ -37,12 +37,8 @@ class SaleService
         try {
             $body = array_merge($this->request, ['grand_total' => $this->total()]);
 
-            // dd($body);
-
             foreach ($body['orders'] as $order) {
                 $order['order_id'] = $order['id'];
-
-                // dd($order);
 
                 // made a sale
                 $sale = Sale::create($order);
@@ -50,8 +46,6 @@ class SaleService
                 if (!$sale) {
                     throw new Exception('record to sale encountered an error');
                 }
-
-                // dd('y here');
 
                 // update order status
                 Order::where('transaction_session_no', $transactionSessionNo)->update(['status' => OrderStatus::COMPLETED]);
