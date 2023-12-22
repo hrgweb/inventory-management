@@ -23,11 +23,6 @@ class OrderData extends Data
         $this->order_status ??= OrderStatus::PENDING;
         $this->selling_price ??= 0;
         $this->qty ??= 1;
-        $this->subtotal = $this->total();
-    }
-
-    protected function total(): float
-    {
-        return $this->selling_price * $this->qty;
+        $this->subtotal = $this->selling_price * $this->qty;
     }
 }

@@ -3,6 +3,7 @@
 namespace Hrgweb\SalesAndInventory\Controllers;
 
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
@@ -10,10 +11,16 @@ use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            // return OrderTransactionService::generate();
+            $transaction_session_no = $request->input('transaction_session_no');
+
+            if (!$transaction_session_no) {
+                throw new Exception('no transaction session no on this request.');
+            }
+
+            return OrderService::fetch($transaction_session_no);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return response()->json($e->getMessage(), 500);

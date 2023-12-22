@@ -47,5 +47,5 @@ Route::prefix('api')->group(function () {
     // Route::post('/sales', [SaleController::class, 'store']);
 
     // Order
-    Route::get('/orders', [ProductOrderController::class, 'viaSearchOrBarcode']);
+    // Route::get('/orders', [ProductOrderController::class, 'viaSearchOrBarcode']);
 });

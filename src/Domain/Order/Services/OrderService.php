@@ -18,6 +18,11 @@ class OrderService
         return new static(...$params);
     }
 
+    public static function fetch($transactionSessionNo = ''): mixed
+    {
+        return OrderData::collection(Order::where('transaction_session_no', $transactionSessionNo)->get());
+    }
+
     public function save()
     {
         $order = Order::create($this->request);
@@ -31,8 +36,5 @@ class OrderService
         return OrderData::from($order)->additional(['created_at' => $order->created_at]);
     }
 
-    public static function list($transactionSession = ''): mixed
-    {
-        return OrderData::collection(Order::where('order_transaction_session', $transactionSession)->get());
-    }
+
 }
