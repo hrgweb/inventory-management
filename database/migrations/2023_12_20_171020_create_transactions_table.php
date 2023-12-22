@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('cost_price', 15, 2)->nullable();
             $table->decimal('selling_price', 15, 2)->nullable();
             $table->decimal('total_cost', 15, 2)->nullable();
+            $table->unsignedInteger('qty')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

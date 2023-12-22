@@ -9,13 +9,17 @@ use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
 class TransactionData extends Data
 {
     public function __construct(
-        public TransactionType $transaction_type,
         public ProductData $product,
-        public float $selling_price,
+        public TransactionType $transaction_type,
         public int $qty,
-        public float $subtotal,
+        public float $cost_price,
+        public float $selling_price,
+        public ?float $total_cost,
+        public ?int $qty_change,
+        public ?float $subtotal,
         public ?string $notes,
     ) {
         $this->transaction_type ??= TransactionType::PURCHASE;
+        $this->subtotal = $this->cost_price * $this->qty;
     }
 }

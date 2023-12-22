@@ -1,21 +1,21 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Sale\Services;
+namespace Hrgweb\SalesAndInventory\Domain\Transaction\Services;
 
 use Exception;
-use Hrgweb\SalesAndInventory\Models\Sale;
-use Hrgweb\SalesAndInventory\Models\Order;
-use Hrgweb\SalesAndInventory\Models\TransactionSession;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
-use Hrgweb\SalesAndInventory\Domain\Sale\Enums\TransactionStatus;
+use Hrgweb\SalesAndInventory\Models\Product;
+use Hrgweb\SalesAndInventory\Models\Transaction;
+use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
+use Hrgweb\SalesAndInventory\Domain\Product\Services\BarcodeService;
+use Hrgweb\SalesAndInventory\Domain\Product\Services\ProductService;
+use Hrgweb\SalesAndInventory\Domain\Transaction\Data\TransactionData;
 
 class TransactionService
 {
-    public function __construct(protected array $request = [])
-    {
+    public function __construct(protected array $request) {
+
     }
 
     public static function make(...$params)
@@ -23,34 +23,30 @@ class TransactionService
         return new static(...$params);
     }
 
-    public function save(): JsonResponse
+    public function save()
     {
-        return $this->request;
+        $this->request['product']['barcode'] = BarcodeService::create();
 
-        $orders = collect($this->request['orders']);
-        $ordersCount = $orders->count();
+        // return $this->request['product'];
 
-        // no orders made
-        if ($ordersCount <= 0) {
-            return response()->json('please made an order.', 500);
-        }
+        $product = new Product;
+        $transaction = new Transaction;
 
         DB::beginTransaction();
         try {
-            $body = array_merge($this->request, ['total_amount' => $this->total()]);
+            $product = ProductService::make($this->request['product'])->save();
 
-            // made a sale
-            $sale = Sale::create($body);
+            // dd($product);
 
-            if (!$sale) {
-                throw new Exception('saving order encountered an error');
+            $transaction = Transaction::create(array_merge($this->request, ['product_id' => $product->id]));
+
+            // dd($transaction);
+
+            if (!$transaction) {
+                throw new Exception('no inventory transaction saved. encountered an error');
             }
 
-            // update order status
-            Order::where('order_transaction_session', $body['order_transaction_session'])->update(['order_status' => OrderStatus::COMPLETED]);
-
-            // update transaction session
-            TransactionSession::where('transaction_session', $body['order_transaction_session'])->update(['status' => TransactionStatus::COMPLETED]);
+            Log::info('1 inventory transaction saved.');
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -58,13 +54,9 @@ class TransactionService
         }
         DB::commit();
 
-        Log::info($ordersCount . ' orders was purchased via transaction session (' . $this->request['order_transaction_session'] . ').');
+        // generate barcode img
+        BarcodeService::generate($product->name, $product->barcode);
 
-        return response()->json(true);
-    }
-
-    public function total()
-    {
-        return collect($this->request['orders'])->reduce(fn (?int $carry,  $order) =>  $carry + $order['subtotal'], 0);
+        return TransactionData::from(array_merge($transaction->toArray(), ['product' => ProductData::from($product)]))->additional(['created_at' => $transaction->created_at]);
     }
 }
