@@ -16,7 +16,7 @@ Route::prefix('api')->group(function () {
         $session  = TransactionSessionService::new();
 
         return [
-            'transaction_session' => $session,
+            'transaction_session_no' => $session,
             'orders' => [], // OrderService::list($session),
             'suppliers' => SupplierService::all()
         ];
@@ -27,7 +27,7 @@ Route::prefix('api')->group(function () {
 
     // Product
     Route::get('/products/', [ProductController::class, 'index']);
-    Route::post('/products/', [ProductController::class, 'store']);
+    // Route::post('/products/', [ProductController::class, 'store']);
 
     // Supplier
     Route::get('/suppliers', [SupplierController::class, 'index']);

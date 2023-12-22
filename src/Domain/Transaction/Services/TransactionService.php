@@ -26,7 +26,7 @@ class TransactionService
 
     private function purchase()
     {
-        // $this->request['product']['barcode'] = BarcodeService::create();
+        $this->request['product']['barcode'] = BarcodeService::create();
 
         $product = new Product;
         $transaction = new Transaction;
