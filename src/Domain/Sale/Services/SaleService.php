@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Transaction\Services;
+namespace Hrgweb\SalesAndInventory\Domain\Sale\Services;
 
 use Exception;
 use Hrgweb\SalesAndInventory\Models\Sale;

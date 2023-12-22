@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
 
             $table->string('transaction_session_no')->index();
-            $table->decimal('selling_price', 15, 2);
-            $table->unsignedInteger('qty');
-            $table->decimal('subtotal', 15, 2)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
