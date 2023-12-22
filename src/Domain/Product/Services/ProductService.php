@@ -34,6 +34,21 @@ class ProductService
             ->paginate(10));
     }
 
+    public function lookup(): mixed
+    {
+        $search = $this->request['search'] ?? '';
+
+        return ProductData::collection(Product::query()
+            ->when($search, function (Builder $query, string $search) {
+                $query->whereRaw('name like ?', [$search . '%']);
+            })
+            ->when($search, function (Builder $query, string $search) {
+                $query->orWhereRaw('barcode like ?', [$search . '%']);
+            })
+            ->latest('created_at')
+            ->get());
+    }
+
     public function save(): ProductData
     {
         $product = Product::create($this->request);
