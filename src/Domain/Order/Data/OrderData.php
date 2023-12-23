@@ -3,6 +3,7 @@
 namespace Hrgweb\SalesAndInventory\Domain\Order\Data;
 
 use Spatie\LaravelData\Data;
+use Hrgweb\SalesAndInventory\Models\Order;
 use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
 use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
 
@@ -23,9 +24,23 @@ class OrderData extends Data
         public ?string $notes
     ) {
         // $this->customer_id ??= 1;
-        $this->status ??= OrderStatus::PENDING;
+        // $this->status ??= OrderStatus::PENDING;
         $this->selling_price ??= 0;
         $this->qty ??= 1;
         $this->subtotal = $this->selling_price * $this->qty;
+    }
+
+    public static function fromModel(Order $order): self
+    {
+        return new self(
+            $order->id,
+            $order->transaction_session_no,
+            ProductData::from($order->product),
+            $order->selling_price,
+            $order->qty,
+            $order->subtotal,
+            OrderStatus::PENDING,
+            $order->notes
+        );
     }
 }
