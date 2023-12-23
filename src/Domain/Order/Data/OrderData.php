@@ -13,18 +13,12 @@ class OrderData extends Data
         public ?int $id,
         public string $transaction_session_no,
         public ?ProductData $product,
-        // public ?int $customer_id,
-        // public int $product_id,
-        // public ?string $product_name,
-        // public ?string $product_description,
         public ?float $selling_price,
         public ?int $qty,
         public ?float $subtotal,
         public ?OrderStatus $status,
         public ?string $notes
     ) {
-        // $this->customer_id ??= 1;
-        // $this->status ??= OrderStatus::PENDING;
         $this->selling_price ??= 0;
         $this->qty ??= 1;
         $this->subtotal = $this->selling_price * $this->qty;
