@@ -12,7 +12,7 @@ class ProductData extends Data
         public string $name,
         public ?string $description,
         public ?int $category_id,
-        public ?int $brand_id,
+        // public ?int $brand_id,
         public ?int $supplier_id,
         public float $cost_price,
         public float $selling_price,
@@ -29,7 +29,7 @@ class ProductData extends Data
         public ?Carbon $created_at
     ) {
         $this->category_id = 1;
-        $this->brand_id = 1;
+        // $this->brand_id = 1;
         $this->supplier_id = 1;
         $this->is_available = true;
     }

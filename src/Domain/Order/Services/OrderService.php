@@ -25,7 +25,13 @@ class OrderService
 
     public function save()
     {
-        $order = Order::create($this->request);
+        $body = array_merge($this->request, [
+            'product_id' => $this->request['product']['id'],
+            'product_name' => $this->request['product']['name'],
+            'product_description' => $this->request['product']['description'],
+        ]);
+
+        $order = Order::create($body);
 
         if (!$order) {
             throw new Exception('no order saved. encountered an error.');
@@ -35,6 +41,4 @@ class OrderService
 
         return OrderData::from($order)->additional(['created_at' => $order->created_at]);
     }
-
-
 }
