@@ -39,6 +39,6 @@ class OrderService
 
         Log::info('1 order saved.');
 
-        return OrderData::from($order)->additional(['created_at' => $order->created_at]);
+        return OrderData::from($order);
     }
 }

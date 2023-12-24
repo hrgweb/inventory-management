@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
@@ -13,8 +14,10 @@ use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
 use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
 Route::prefix('api')->group(function () {
-    Route::get('/data', function () {
-        $transactionSessionNo  = TransactionSessionService::new();
+    Route::get('/data', function (Request $request) {
+        $transactionSessionNo = $request->input('transaction_session_no')
+            ? $request->input('transaction_session_no')
+            : $transactionSessionNo  = TransactionSessionService::new();
 
         return [
             'transaction_session_no' => $transactionSessionNo,
