@@ -39,6 +39,7 @@ class SaleService
 
             foreach ($body['orders'] as $order) {
                 $order['order_id'] = $order['id'];
+                $order['product_id'] = $order['product']['id'];
 
                 // made a sale
                 $sale = Sale::create($order);
@@ -62,7 +63,7 @@ class SaleService
 
         Log::info($ordersCount . ' orders was purchased on session no (' . $transactionSessionNo . ').');
 
-        return response()->json(true);
+        return response()->json(['success' => true, 'msg' => 'sales created successfuly']);
     }
 
     public function total()
