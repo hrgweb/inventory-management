@@ -26,7 +26,6 @@ class ProductData extends Data
         // public ?float $weight,
         // public ?string $dimensions,
         public ?string $notes,
-        public ?Carbon $created_at
     ) {
         $this->category_id = 1;
         // $this->brand_id = 1;
