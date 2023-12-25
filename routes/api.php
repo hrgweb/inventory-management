@@ -28,7 +28,7 @@ Route::prefix('api')->group(function () {
     Route::post('/transaction-sessions', [TransactionSessionController::class, 'store']);
 
     // Product
-    Route::get('/products/', [ProductController::class, 'index']);
+    // Route::get('/products/', [ProductController::class, 'index']);
     Route::get('/products/lookup', [ProductController::class, 'lookup']);
     // Route::post('/products/', [ProductController::class, 'store']);
 
@@ -40,6 +40,7 @@ Route::prefix('api')->group(function () {
     Route::post('/categories', [CategoryController::class, 'store']);
 
     // Transaction
+    Route::get('/transactions', [TransactionController::class, 'index']);
     Route::post('/transactions', [TransactionController::class, 'store']);
 
     // Order

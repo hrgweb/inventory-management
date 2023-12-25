@@ -10,6 +10,16 @@ use Hrgweb\SalesAndInventory\Domain\Transaction\Services\TransactionService;
 
 class TransactionController extends Controller
 {
+    public function index()
+    {
+        try {
+            return TransactionService::make()->fetch();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json($e->getMessage(), 500);
+        }
+    }
+
     public function store(TransactionData $transaction)
     {
         try {

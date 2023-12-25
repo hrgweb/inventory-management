@@ -2,12 +2,18 @@
 
 namespace Hrgweb\SalesAndInventory\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Hrgweb\SalesAndInventory\Models\Product;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaction extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

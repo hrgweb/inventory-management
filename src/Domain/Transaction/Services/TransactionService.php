@@ -15,13 +15,18 @@ use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
 
 class TransactionService
 {
-    public function __construct(protected array $request)
+    public function __construct(protected array $request = [])
     {
     }
 
     public static function make(...$params)
     {
         return new static(...$params);
+    }
+
+    public static function fetch()
+    {
+        return TransactionData::collection(Transaction::with(['product'])->paginate(10));
     }
 
     private function purchase()
