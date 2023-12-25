@@ -19,10 +19,10 @@ return new class extends Migration
 
             $table->enum('transaction_type', ['purchase', 'sale', 'adjustment'])->nullable();    // (e.g., "Purchase," "Sale," "Adjustment")
             $table->integer('qty_change')->nullable()->default(0);    //  (positive for additions, negative for deductions)
-            $table->decimal('cost_price', 15, 2)->nullable();
-            $table->decimal('selling_price', 15, 2)->nullable();
-            $table->decimal('subtotal', 15, 2)->nullable();
-            $table->unsignedInteger('qty')->nullable();
+            // $table->decimal('cost_price', 15, 2)->nullable();
+            // $table->decimal('selling_price', 15, 2)->nullable();
+            // $table->decimal('subtotal', 15, 2)->nullable();
+            // $table->unsignedInteger('qty')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
