@@ -5,29 +5,27 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionSessionController;
+use Hrgweb\SalesAndInventory\Models\TransactionSession;
 use Hrgweb\SalesAndInventory\Controllers\OrderController;
 use Hrgweb\SalesAndInventory\Controllers\CategoryController;
 use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Controllers\TransactionController;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
-use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function (Request $request) {
-        $transactionSessionNo = $request->input('transaction_session_no')
-            ? $request->input('transaction_session_no')
-            : $transactionSessionNo  = TransactionSessionService::new();
+        $transactionSessionNo = $request->input('transaction_session_no');
 
         return [
-            'transaction_session_no' => $transactionSessionNo,
+            'transaction_session' => TransactionSession::select(['session_no', 'status'])->where('session_no', $transactionSessionNo)->first(),
             'orders' => OrderService::fetch($transactionSessionNo),
             'suppliers' => SupplierService::all()
         ];
     });
 
     // Transaction Session
-    Route::get('/transaction-sessions/create', [TransactionSessionController::class, 'create']);
+    Route::post('/transaction-sessions', [TransactionSessionController::class, 'store']);
 
     // Product
     Route::get('/products/', [ProductController::class, 'index']);
