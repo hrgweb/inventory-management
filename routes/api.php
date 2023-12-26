@@ -18,7 +18,7 @@ Route::prefix('api')->group(function () {
         $transactionSessionNo = $request->input('transaction_session_no');
 
         return [
-            'transaction_session' => TransactionSession::select(['session_no', 'status'])->where('session_no', $transactionSessionNo)->first(),
+            'transaction_session' => TransactionSession::select(['session_no', 'status', 'grand_total', 'amount', 'change', 'created_at'])->where('session_no', $transactionSessionNo)->first(),
             'orders' => OrderService::fetch($transactionSessionNo),
             'suppliers' => SupplierService::all()
         ];

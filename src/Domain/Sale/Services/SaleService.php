@@ -52,7 +52,12 @@ class SaleService
                 Order::where('transaction_session_no', $transactionSessionNo)->update(['status' => OrderStatus::COMPLETED]);
 
                 // update transaction session no
-                TransactionSession::where('session_no', $transactionSessionNo)->update(['status' => OrderStatus::COMPLETED, 'grand_total' => $body['grand_total']]);
+                TransactionSession::where('session_no', $transactionSessionNo)->update([
+                    'status' => OrderStatus::COMPLETED,
+                    'grand_total' => $body['grand_total'],
+                    'amount' => $body['amount'],
+                    'change' => $body['change'],
+                ]);
             }
         } catch (Exception $e) {
             DB::rollBack();
