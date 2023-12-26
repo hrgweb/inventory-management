@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name')->index();
             $table->text('description')->nullable();
 
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            // $table->unsignedBigInteger('category_id');
+            // $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
 
-            $table->unsignedBigInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->cascadeOnDelete();
+            // $table->unsignedBigInteger('supplier_id');
+            // $table->foreign('supplier_id')->references('id')->on('suppliers')->cascadeOnDelete();
 
-            $table->decimal('cost_price', 15, 2);
+            // $table->decimal('cost_price', 15, 2);
             $table->decimal('selling_price', 15, 2);
             $table->unsignedBigInteger('stock_qty');
             $table->unsignedBigInteger('reorder_level');
