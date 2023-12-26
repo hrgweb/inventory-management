@@ -31,6 +31,7 @@ Route::prefix('api')->group(function () {
     Route::get('/products/', [ProductController::class, 'index']);
     Route::get('/products/lookup', [ProductController::class, 'lookup']);
     Route::post('/products/', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'update']);
 
     // Supplier
     Route::get('/suppliers', [SupplierController::class, 'index']);

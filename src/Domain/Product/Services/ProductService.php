@@ -61,4 +61,25 @@ class ProductService
 
         return ProductData::from($product);
     }
+
+    public function update($id): bool
+    {
+        $update = Product::where('id', $id)->update([
+            'name' => $this->request['name'],
+            'description' => $this->request['description'],
+            'selling_price' => $this->request['selling_price'],
+            'stock_qty' => $this->request['stock_qty'],
+            'reorder_level' => $this->request['reorder_level'],
+            'barcode' => $this->request['barcode'],
+            'notes' => $this->request['notes']
+        ]);
+
+        if (!$update) {
+            throw new Exception('no product updated. encountered an error.');
+        }
+
+        Log::info('product (' . $this->request['name'] . ') was successfuly updated.');
+
+        return true;
+    }
 }
