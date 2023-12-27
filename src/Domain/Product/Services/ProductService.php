@@ -62,7 +62,7 @@ class ProductService
         return ProductData::from($product);
     }
 
-    public function update($id): bool
+    public function update(int $id): bool
     {
         $update = Product::where('id', $id)->update([
             'name' => $this->request['name'],
@@ -79,6 +79,19 @@ class ProductService
         }
 
         Log::info('product (' . $this->request['name'] . ') was successfuly updated.');
+
+        return true;
+    }
+
+    public function remove(int $id) //: bool
+    {
+        $remove = Product::where('id', $id)->delete();
+
+        if (!$remove) {
+            throw new Exception('no product was removed. encountered an error.');
+        }
+
+        Log::info('1 product ' . $this->request['name'] . ' was successfuly removed.');
 
         return true;
     }
