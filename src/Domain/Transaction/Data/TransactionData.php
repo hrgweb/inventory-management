@@ -9,6 +9,7 @@ use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
 class TransactionData extends Data
 {
     public function __construct(
+        public ?int $id,
         public ProductData $product,
         public TransactionType $transaction_type,
         public int $qty,
