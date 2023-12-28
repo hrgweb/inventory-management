@@ -12,6 +12,7 @@ use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Controllers\TransactionController;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
+use Hrgweb\SalesAndInventory\Models\Transaction;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function (Request $request) {
@@ -28,11 +29,8 @@ Route::prefix('api')->group(function () {
     Route::post('/transaction-sessions', [TransactionSessionController::class, 'store']);
 
     // Product
-    Route::get('/products/', [ProductController::class, 'index']);
     Route::get('/products/lookup', [ProductController::class, 'lookup']);
-    Route::post('/products/', [ProductController::class, 'store']);
-    Route::put('/products/{id}', [ProductController::class, 'update']);
-    Route::delete('/products/{id}', [ProductController::class, 'remove']);
+    Route::resource('products', ProductController::class);
 
     // Supplier
     Route::get('/suppliers', [SupplierController::class, 'index']);
@@ -43,10 +41,7 @@ Route::prefix('api')->group(function () {
 
     // Transaction
     Route::get('/transactions/data', [TransactionController::class, 'data']);
-    Route::get('/transactions', [TransactionController::class, 'index']);
-    Route::post('/transactions', [TransactionController::class, 'store']);
-    Route::put('/transactions/{id}', [TransactionController::class, 'update']);
-    Route::delete('/transactions/{id}', [TransactionController::class, 'remove']);
+    Route::resource('transactions', TransactionController::class);
 
     // Order
     Route::get('/orders', [OrderController::class, 'index']);

@@ -50,7 +50,7 @@ class TransactionController extends Controller
         }
     }
 
-    public function remove(int $id)
+    public function destroy(int $id)
     {
         try {
             return TransactionService::make(request()->all())->remove($id);
