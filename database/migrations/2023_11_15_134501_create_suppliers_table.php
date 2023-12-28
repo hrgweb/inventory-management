@@ -15,19 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->text('description')->nullable();
-            $table->string('contact_person')->nullable();
-            $table->string('contact_title')->nullable();
-            $table->text('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('region')->nullable();
-            $table->string('country')->nullable();
-            $table->string('postal_code')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('fax')->nullable();
-            $table->string('website')->nullable();
-            $table->boolean('is_active')->default(1);
-            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
