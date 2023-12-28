@@ -24,6 +24,13 @@ class TransactionService
         return new static(...$params);
     }
 
+    public static function data(): array
+    {
+        return [
+            'products' => ProductData::collection(Product::orderBy('name', 'asc')->get())
+        ];
+    }
+
     public static function fetch()
     {
         return TransactionData::collection(Transaction::with(['product'])->paginate(10));
