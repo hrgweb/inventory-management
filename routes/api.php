@@ -45,6 +45,7 @@ Route::prefix('api')->group(function () {
     Route::get('/transactions/data', [TransactionController::class, 'data']);
     Route::get('/transactions', [TransactionController::class, 'index']);
     Route::post('/transactions', [TransactionController::class, 'store']);
+    Route::put('/transactions/{id}', [TransactionController::class, 'update']);
 
     // Order
     Route::get('/orders', [OrderController::class, 'index']);

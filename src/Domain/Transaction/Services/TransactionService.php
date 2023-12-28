@@ -77,4 +77,25 @@ class TransactionService
             TransactionType::ADJUSTMENTS->value => 'adjustment'
         };
     }
+
+    public function update(int $id) //: bool
+    {
+        $update = Transaction::where('id', $id)->update([
+            'product_id' => $this->request['product']['id'],
+            'transaction_type' => $this->request['transaction_type'],
+            'qty' => $this->request['qty'],
+            'cost_price' => $this->request['cost_price'],
+            'selling_price' => $this->request['selling_price'],
+            'subtotal' => $this->request['subtotal'],
+            'notes' => $this->request['notes']
+        ]);
+
+        if (!$update) {
+            throw new Exception('no transaction updated. encountered an error.');
+        }
+
+        Log::info('transaction (' . $this->request['product']['name'] . ') was successfuly updated.');
+
+        return true;
+    }
 }

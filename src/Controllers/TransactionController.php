@@ -39,4 +39,14 @@ class TransactionController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function update(TransactionData $transaction, int $id)
+    {
+        try {
+            return TransactionService::make($transaction->toArray())->update($id);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json($e->getMessage(), 500);
+        }
+    }
 }
