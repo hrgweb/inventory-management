@@ -98,4 +98,17 @@ class TransactionService
 
         return true;
     }
+
+    public function remove(int $id) //: bool
+    {
+        $remove = Transaction::where('id', $id)->delete();
+
+        if (!$remove) {
+            throw new Exception('no transaction was removed. encountered an error.');
+        }
+
+        Log::info('1 transaction ' . $this->request['name'] . ' was successfuly removed.');
+
+        return true;
+    }
 }

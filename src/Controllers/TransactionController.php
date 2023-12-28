@@ -49,4 +49,14 @@ class TransactionController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function remove(int $id)
+    {
+        try {
+            return TransactionService::make(request()->all())->remove($id);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json($e->getMessage(), 500);
+        }
+    }
 }
