@@ -12,7 +12,6 @@ use Hrgweb\SalesAndInventory\Controllers\SupplierController;
 use Hrgweb\SalesAndInventory\Controllers\TransactionController;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
-use Hrgweb\SalesAndInventory\Models\Transaction;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function (Request $request) {
@@ -33,8 +32,7 @@ Route::prefix('api')->group(function () {
     Route::resource('products', ProductController::class);
 
     // Supplier
-    Route::get('/suppliers', [SupplierController::class, 'index']);
-    Route::post('/suppliers', [SupplierController::class, 'store']);
+    Route::resource('suppliers', SupplierController::class);
 
     // Category
     Route::post('/categories', [CategoryController::class, 'store']);

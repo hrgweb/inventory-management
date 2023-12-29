@@ -40,4 +40,33 @@ class SupplierService
 
         return SupplierData::from($supplier)->additional(['created_at' => $supplier->created_at]);
     }
+
+    public function update(int $id): bool
+    {
+        $update = Supplier::where('id', $id)->update([
+            'name' => $this->request['name'],
+            'description' => $this->request['description'],
+        ]);
+
+        if (!$update) {
+            throw new Exception('no supplier updated. encountered an error.');
+        }
+
+        Log::info('supplier (' . $this->request['name'] . ') was successfuly updated.');
+
+        return true;
+    }
+
+    public function remove(int $id) //: bool
+    {
+        $remove = Supplier::where('id', $id)->delete();
+
+        if (!$remove) {
+            throw new Exception('no supplier was removed. encountered an error.');
+        }
+
+        Log::info('1 supplier ' . $this->request['name'] . ' was successfuly removed.');
+
+        return true;
+    }
 }
