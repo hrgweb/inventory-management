@@ -15,7 +15,8 @@ class SaleData extends Data
         public DataCollection $orders,
         public float $grand_total,
         public float $amount,
-        public ?float $change
+        public ?float $change,
+        public ?array $product_count_occurences
     ) {
     }
 }

@@ -9,6 +9,7 @@ use Hrgweb\SalesAndInventory\Models\TransactionSession;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
+use Hrgweb\SalesAndInventory\Domain\Product\Services\ProductService;
 use Hrgweb\SalesAndInventory\Domain\Sale\Enums\TransactionStatus;
 
 class SaleService
@@ -30,7 +31,7 @@ class SaleService
 
         // no orders made
         if ($ordersCount <= 0) {
-            return response()->json('please made an order.', 500);
+            return response()->json('please make an order.', 500);
         }
 
         DB::beginTransaction();
@@ -59,6 +60,9 @@ class SaleService
                     'change' => $body['change'],
                 ]);
             }
+
+            // product deductions
+            ProductService::reduce($this->request['product_count_occurences']);
         } catch (Exception $e) {
             DB::rollBack();
 
