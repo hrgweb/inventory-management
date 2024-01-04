@@ -2,7 +2,6 @@
 
 namespace Hrgweb\SalesAndInventory\Domain\Product\Data;
 
-use Carbon\Carbon;
 use Spatie\LaravelData\Data;
 
 class ProductData extends Data
