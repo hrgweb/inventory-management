@@ -2,7 +2,9 @@
 
 namespace Hrgweb\SalesAndInventory\Domain\Product\Services;
 
+use stdClass;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
 use Hrgweb\SalesAndInventory\Models\Product;
@@ -62,14 +64,28 @@ class ProductService
         return ProductData::from($product);
     }
 
-    public function update(int $id): bool
+    public function update(int $id): JsonResponse
     {
+        // validate the reorder level and reorder level danger
+        // must less than or equal to the stock qty, else throw error message
+        $stockQty = $this->request['stock_qty'];
+        if (
+            $this->request['reorder_level'] > $stockQty  ||
+            $this->request['reorder_level_danger'] > $stockQty
+        ) {
+            $msg = 'Reorder level & danger must not be greater than the stock qty.';
+            return response()->json([
+                'errors' => [$msg],
+                'message' => $msg
+            ], 400);
+        }
+
         $update = Product::where('id', $id)->update([
             'name' => $this->request['name'],
             'description' => $this->request['description'],
             'cost_price' => $this->request['cost_price'],
             'selling_price' => $this->request['selling_price'],
-            'stock_qty' => $this->request['stock_qty'],
+            'stock_qty' => $stockQty,
             'reorder_level' => $this->request['reorder_level'],
             'reorder_level_danger' => $this->request['reorder_level_danger'],
             'barcode' => $this->request['barcode'],
@@ -82,7 +98,7 @@ class ProductService
 
         Log::info('product (' . $this->request['name'] . ') was successfuly updated.');
 
-        return true;
+        return response()->json(true);
     }
 
     public function remove(int $id) //: bool
