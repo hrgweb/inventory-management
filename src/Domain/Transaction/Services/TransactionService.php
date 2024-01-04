@@ -38,22 +38,34 @@ class TransactionService
 
     private function purchase()
     {
-        $this->request['product']['barcode'] = BarcodeService::create();
+        // $this->request['product']['barcode'] = BarcodeService::create();
 
         $product = new Product;
         $transaction = new Transaction;
 
         DB::beginTransaction();
         try {
-            $product = ProductService::make($this->request['product'])->save();
+            $productId = $this->request['product']['id'];
 
-            $transaction = Transaction::create(array_merge($this->request, ['product_id' => $product->id]));
+            $transaction = Transaction::create(array_merge($this->request, ['product_id' => $productId]));
 
             if (!$transaction) {
                 throw new Exception('no inventory transaction saved. encountered an error');
             }
 
             Log::info('1 inventory transaction saved.');
+
+            // get the stock_qty of the product
+            $productStockQty = (int)Product::findOrFail($productId)?->stock_qty;
+
+            // then add it based on the transaction qty
+            $updateStockQty = Product::where('id', $productId)->update(['stock_qty' => $productStockQty + $this->request['qty']]);
+
+            if (!$updateStockQty) {
+                throw new Exception('updating the stock qty of the product ' . $this->request['product']['name'] . ' was encountered an error.');
+            }
+
+            // $product = ProductService::make($this->request['product'])->save();
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -64,7 +76,7 @@ class TransactionService
         // generate barcode img
         // BarcodeService::generate($product->name, $product->barcode);
 
-        return TransactionData::from(array_merge($transaction->toArray(), ['product' => ProductData::from($product)]))->additional(['created_at' => $transaction->created_at]);
+        return TransactionData::from(array_merge($transaction->toArray(), ['product' => $this->request['product']]))->additional(['created_at' => $transaction->created_at]);
     }
 
     public function save()

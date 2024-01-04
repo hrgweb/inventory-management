@@ -13,12 +13,12 @@ class TransactionData extends Data
         public ProductData $product,
         public TransactionType $transaction_type,
         public int $qty,
-        public float $cost_price,
-        public float $selling_price,
-        public ?float $subtotal,
+        // public float $cost_price,
+        // public float $selling_price,
+        // public ?float $subtotal,
         public ?string $notes,
     ) {
         $this->transaction_type ??= TransactionType::PURCHASE;
-        $this->subtotal = $this->cost_price * $this->qty;
+        // $this->subtotal = $this->cost_price * $this->qty;
     }
 }
