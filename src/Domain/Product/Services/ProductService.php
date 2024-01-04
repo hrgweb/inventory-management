@@ -73,7 +73,7 @@ class ProductService
             $this->request['reorder_level'] > $stockQty  ||
             $this->request['reorder_level_danger'] > $stockQty
         ) {
-            $msg = 'Reorder level & danger must not be greater than the stock qty.';
+            $msg = 'Reorder level warning & danger must not be greater than the stock qty.';
             return response()->json([
                 'errors' => [$msg],
                 'message' => $msg

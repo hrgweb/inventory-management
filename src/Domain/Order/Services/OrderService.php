@@ -5,6 +5,7 @@ namespace Hrgweb\SalesAndInventory\Domain\Order\Services;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Hrgweb\SalesAndInventory\Models\Order;
+use Hrgweb\SalesAndInventory\Models\Product;
 use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
 
 class OrderService
@@ -25,6 +26,17 @@ class OrderService
 
     public function save()
     {
+        // if product qty is <= 0 then exit
+        $produtStockQty = (int)Product::findOrFail($this->request['product']['id'])?->stock_qty;
+
+        if ($produtStockQty <= 0) {
+            $msg = ucfirst($this->request['product']['name']) . ' is not available.';
+            return response()->json([
+                'errors' => [$msg],
+                'message' => $msg
+            ], 400);
+        }
+
         $body = array_merge($this->request, [
             'product_id' => $this->request['product']['id'],
             'product_name' => $this->request['product']['name'],
