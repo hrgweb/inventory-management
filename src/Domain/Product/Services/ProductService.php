@@ -71,6 +71,7 @@ class ProductService
             'selling_price' => $this->request['selling_price'],
             'stock_qty' => $this->request['stock_qty'],
             'reorder_level' => $this->request['reorder_level'],
+            'reorder_level_danger' => $this->request['reorder_level_danger'],
             'barcode' => $this->request['barcode'],
             'notes' => $this->request['notes']
         ]);

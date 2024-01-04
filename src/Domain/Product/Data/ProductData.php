@@ -17,6 +17,7 @@ class ProductData extends Data
         public float $selling_price,
         public ?int $stock_qty,
         public ?int $reorder_level,
+        public ?int $reorder_level_danger,
         public ?string $barcode,
         // public ?float $tax_rate,
         // public ?float $discount,
