@@ -14,7 +14,7 @@ class ProductData extends Data
         // public ?int $category_id,
         // public ?int $brand_id,
         // public ?int $supplier_id,
-        // public float $cost_price,
+        public float $cost_price,
         public float $selling_price,
         public int $stock_qty,
         public int $reorder_level,
