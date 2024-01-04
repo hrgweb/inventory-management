@@ -43,7 +43,7 @@ Route::prefix('api')->group(function () {
 
     // Order
     Route::get('/orders', [OrderController::class, 'index']);
-    Route::post('/orders', [OrderController::class, 'store']);
+    Route::resource('/orders', OrderController::class);
 
     // Sale
     Route::post('/sales', [SaleController::class, 'store']);

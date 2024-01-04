@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Hrgweb\SalesAndInventory\Models\Order;
 use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
 use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
 
@@ -31,6 +32,16 @@ class OrderController extends Controller
     {
         try {
             return OrderService::make($order->toArray())->save();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json($e->getMessage(), 500);
+        }
+    }
+
+    public function destroy(Request $request, int $id)
+    {
+        try {
+            return OrderService::make(array_merge($request->all(), ['order_id' => $id]))->remove();
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return response()->json($e->getMessage(), 500);

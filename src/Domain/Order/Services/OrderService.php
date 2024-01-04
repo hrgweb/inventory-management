@@ -53,4 +53,15 @@ class OrderService
 
         return OrderData::from($order);
     }
+
+    public function remove(): bool
+    {
+        $removed = Order::where('id', $this->request['order_id'])->delete();
+
+        if (!$removed) {
+            throw new Exception('removing product ' . $this->request['name'] . ' encountered an error.');
+        }
+
+        return true;
+    }
 }
