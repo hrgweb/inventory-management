@@ -5,13 +5,17 @@ namespace Hrgweb\SalesAndInventory\Domain\Transaction\Services;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Hrgweb\SalesAndInventory\Models\Order;
 use Hrgweb\SalesAndInventory\Models\Product;
 use Hrgweb\SalesAndInventory\Models\Transaction;
+use Hrgweb\SalesAndInventory\Models\TransactionSession;
+use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
 use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
 use Hrgweb\SalesAndInventory\Domain\Product\Services\BarcodeService;
 use Hrgweb\SalesAndInventory\Domain\Product\Services\ProductService;
 use Hrgweb\SalesAndInventory\Domain\Transaction\Data\TransactionData;
 use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
+use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
 class TransactionService
 {
@@ -142,5 +146,28 @@ class TransactionService
         Log::info('1 transaction ' . $this->request['name'] . ' was successfuly removed.');
 
         return true;
+    }
+
+    public function void()
+    {
+        $transactionSessionNo = $this->request['transaction_session_no'];
+        $newTransactionSessionNo = '';
+
+        DB::beginTransaction();
+        try {
+            // update transaction session status to void
+            TransactionSession::where('session_no', $transactionSessionNo)->update(['status' => OrderStatus::VOID]);
+
+            // update orders status to void
+            Order::where('transaction_session_no', $transactionSessionNo)->update(['status' => OrderStatus::VOID]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+        }
+        DB::commit();
+
+        info('transaction session ' . $transactionSessionNo . ' was void.');
+
+        return response()->json(['transaction_session_no' => $newTransactionSessionNo]);
     }
 }

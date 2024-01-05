@@ -39,6 +39,7 @@ Route::prefix('api')->group(function () {
 
     // Transaction
     Route::get('/transactions/data', [TransactionController::class, 'data']);
+    Route::delete('/transactions/void', [TransactionController::class, 'void']);
     Route::resource('transactions', TransactionController::class);
 
     // Order

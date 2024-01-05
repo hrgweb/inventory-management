@@ -59,4 +59,14 @@ class TransactionController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function void()
+    {
+        try {
+            return TransactionService::make(request()->all())->void();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json($e->getMessage(), 500);
+        }
+    }
 }
