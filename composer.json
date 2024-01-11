@@ -17,8 +17,6 @@
     "spatie/laravel-data": "*",
     "picqer/php-barcode-generator": "^2.4"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "extra": {
     "laravel": {
       "providers": [
