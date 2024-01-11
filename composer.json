@@ -1,10 +1,10 @@
 {
-  "name": "hrgweb/pos-and-inventory-package",
+  "name": "hrgweb/pos-and-inventory",
   "description": "Point of Sale and Inventory Management System.",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Hrgweb\\SalesAndInventory\\": "src/"
+      "Hrgweb\\PosAndInventory\\": "src/"
     }
   },
   "authors": [
@@ -22,7 +22,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Hrgweb\\SalesAndInventory\\Providers\\SalesAndInventoryProvider"
+        "Hrgweb\\PosAndInventory\\Providers\\PosAndInventoryProvider"
       ]
     }
   }

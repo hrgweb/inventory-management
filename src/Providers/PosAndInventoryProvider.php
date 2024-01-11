@@ -1,10 +1,10 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Providers;
+namespace Hrgweb\PosAndInventory\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class SalesAndInventoryProvider extends ServiceProvider
+class PosAndInventoryProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -16,7 +16,7 @@ class SalesAndInventoryProvider extends ServiceProvider
 
         // Configurations
         $this->publishes([
-            __DIR__ . '/../../config/sales_and_inventory.php' => config_path('sales_and_inventory.php')
+            __DIR__ . '/../../config/pos_and_inventory.php' => config_path('pos_and_inventory.php')
         ]);
     }
 }
