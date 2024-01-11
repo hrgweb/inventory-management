@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionSessionController;
-use Hrgweb\SalesAndInventory\Models\TransactionSession;
-use Hrgweb\SalesAndInventory\Controllers\OrderController;
-use Hrgweb\SalesAndInventory\Controllers\CategoryController;
-use Hrgweb\SalesAndInventory\Controllers\SupplierController;
-use Hrgweb\SalesAndInventory\Controllers\TransactionController;
-use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
-use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
+use Hrgweb\PosAndInventory\Models\TransactionSession;
+use Hrgweb\PosAndInventory\Controllers\OrderController;
+use Hrgweb\PosAndInventory\Controllers\CategoryController;
+use Hrgweb\PosAndInventory\Controllers\SupplierController;
+use Hrgweb\PosAndInventory\Controllers\TransactionController;
+use Hrgweb\PosAndInventory\Domain\Order\Services\OrderService;
+use Hrgweb\PosAndInventory\Domain\Supplier\Services\SupplierService;
 
 Route::prefix('api')->group(function () {
     Route::get('/data', function (Request $request) {

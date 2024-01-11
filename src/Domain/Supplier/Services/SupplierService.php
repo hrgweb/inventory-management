@@ -1,11 +1,11 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Supplier\Services;
+namespace Hrgweb\PosAndInventory\Domain\Supplier\Services;
 
 use Exception;
-use Hrgweb\SalesAndInventory\Models\Supplier;
+use Hrgweb\PosAndInventory\Models\Supplier;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\SalesAndInventory\Domain\Supplier\Data\SupplierData;
+use Hrgweb\PosAndInventory\Domain\Supplier\Data\SupplierData;
 
 class SupplierService
 {

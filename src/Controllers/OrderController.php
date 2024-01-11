@@ -1,14 +1,14 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Controllers;
+namespace Hrgweb\PosAndInventory\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Hrgweb\SalesAndInventory\Models\Order;
-use Hrgweb\SalesAndInventory\Domain\Order\Data\OrderData;
-use Hrgweb\SalesAndInventory\Domain\Order\Services\OrderService;
+use Hrgweb\PosAndInventory\Models\Order;
+use Hrgweb\PosAndInventory\Domain\Order\Data\OrderData;
+use Hrgweb\PosAndInventory\Domain\Order\Services\OrderService;
 
 class OrderController extends Controller
 {

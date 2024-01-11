@@ -1,12 +1,12 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Controllers;
+namespace Hrgweb\PosAndInventory\Controllers;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Hrgweb\SalesAndInventory\Domain\Supplier\Data\SupplierData;
-use Hrgweb\SalesAndInventory\Domain\Supplier\Services\SupplierService;
+use Hrgweb\PosAndInventory\Domain\Supplier\Data\SupplierData;
+use Hrgweb\PosAndInventory\Domain\Supplier\Services\SupplierService;
 
 class SupplierController extends Controller
 {

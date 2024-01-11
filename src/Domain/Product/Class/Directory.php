@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Product\Class;
+namespace Hrgweb\PosAndInventory\Domain\Product\Class;
 
 class Directory
 {

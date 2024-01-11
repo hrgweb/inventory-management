@@ -1,21 +1,21 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Transaction\Services;
+namespace Hrgweb\PosAndInventory\Domain\Transaction\Services;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\SalesAndInventory\Models\Order;
-use Hrgweb\SalesAndInventory\Models\Product;
-use Hrgweb\SalesAndInventory\Models\Transaction;
-use Hrgweb\SalesAndInventory\Models\TransactionSession;
-use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
-use Hrgweb\SalesAndInventory\Domain\Product\Data\ProductData;
-use Hrgweb\SalesAndInventory\Domain\Product\Services\BarcodeService;
-use Hrgweb\SalesAndInventory\Domain\Product\Services\ProductService;
-use Hrgweb\SalesAndInventory\Domain\Transaction\Data\TransactionData;
-use Hrgweb\SalesAndInventory\Domain\Transaction\Enums\TransactionType;
-use Hrgweb\SalesAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
+use Hrgweb\PosAndInventory\Models\Order;
+use Hrgweb\PosAndInventory\Models\Product;
+use Hrgweb\PosAndInventory\Models\Transaction;
+use Hrgweb\PosAndInventory\Models\TransactionSession;
+use Hrgweb\PosAndInventory\Domain\Order\Enums\OrderStatus;
+use Hrgweb\PosAndInventory\Domain\Product\Data\ProductData;
+use Hrgweb\PosAndInventory\Domain\Product\Services\BarcodeService;
+use Hrgweb\PosAndInventory\Domain\Product\Services\ProductService;
+use Hrgweb\PosAndInventory\Domain\Transaction\Data\TransactionData;
+use Hrgweb\PosAndInventory\Domain\Transaction\Enums\TransactionType;
+use Hrgweb\PosAndInventory\Domain\TransactionSession\Services\TransactionSessionService;
 
 class TransactionService
 {

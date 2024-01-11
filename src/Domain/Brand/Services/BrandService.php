@@ -1,11 +1,11 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Brand\Services;
+namespace Hrgweb\PosAndInventory\Domain\Brand\Services;
 
 use Exception;
-use Hrgweb\SalesAndInventory\Models\Brand;
+use Hrgweb\PosAndInventory\Models\Brand;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\SalesAndInventory\Domain\Brand\Data\BrandData;
+use Hrgweb\PosAndInventory\Domain\Brand\Data\BrandData;
 
 class BrandService
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Controllers;
+namespace Hrgweb\PosAndInventory\Controllers;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Hrgweb\SalesAndInventory\Domain\Brand\Data\BrandData;
-use Hrgweb\SalesAndInventory\Domain\Brand\Services\BrandService;
+use Hrgweb\PosAndInventory\Domain\Brand\Data\BrandData;
+use Hrgweb\PosAndInventory\Domain\Brand\Services\BrandService;
 
 class BrandController extends Controller
 {

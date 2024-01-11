@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Order\Enums;
+namespace Hrgweb\PosAndInventory\Domain\Order\Enums;
 
 enum PaymentStatus: string
 {

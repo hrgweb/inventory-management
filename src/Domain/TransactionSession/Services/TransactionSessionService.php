@@ -1,10 +1,10 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\TransactionSession\Services;
+namespace Hrgweb\PosAndInventory\Domain\TransactionSession\Services;
 
 use Exception;
-use Hrgweb\SalesAndInventory\Models\TransactionSession;
-use Hrgweb\SalesAndInventory\Domain\Order\Enums\OrderStatus;
+use Hrgweb\PosAndInventory\Models\TransactionSession;
+use Hrgweb\PosAndInventory\Domain\Order\Enums\OrderStatus;
 
 class TransactionSessionService
 {

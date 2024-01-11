@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\SalesAndInventory\Domain\Brand\Data;
+namespace Hrgweb\PosAndInventory\Domain\Brand\Data;
 
 use Spatie\LaravelData\Data;
 
