@@ -1,6 +1,6 @@
 {
-  "name": "hrgweb/sales_and_inventory",
-  "description": "Sales and Inventory package.",
+  "name": "hrgweb/pos-and-inventory-package",
+  "description": "Point of Sale and Inventory Management System.",
   "type": "library",
   "autoload": {
     "psr-4": {
