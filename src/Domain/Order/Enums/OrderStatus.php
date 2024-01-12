@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Order\Enums;
+namespace Hrgweb\InventoryManagement\Domain\Order\Enums;
 
 enum OrderStatus: string
 {

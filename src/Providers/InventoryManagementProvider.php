@@ -1,10 +1,10 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Providers;
+namespace Hrgweb\InventoryManagement\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class PosAndInventoryProvider extends ServiceProvider
+class InventoryManagementProvider extends ServiceProvider
 {
     public function boot()
     {

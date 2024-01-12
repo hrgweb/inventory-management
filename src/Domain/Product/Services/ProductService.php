@@ -1,14 +1,14 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Product\Services;
+namespace Hrgweb\InventoryManagement\Domain\Product\Services;
 
 use stdClass;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Builder;
-use Hrgweb\PosAndInventory\Models\Product;
-use Hrgweb\PosAndInventory\Domain\Product\Data\ProductData;
+use Hrgweb\InventoryManagement\Models\Product;
+use Hrgweb\InventoryManagement\Domain\Product\Data\ProductData;
 
 class ProductService
 {

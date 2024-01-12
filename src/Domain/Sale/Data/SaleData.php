@@ -1,11 +1,11 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Sale\Data;
+namespace Hrgweb\InventoryManagement\Domain\Sale\Data;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Hrgweb\PosAndInventory\Domain\Order\Data\OrderData;
+use Hrgweb\InventoryManagement\Domain\Order\Data\OrderData;
 
 class SaleData extends Data
 {

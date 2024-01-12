@@ -1,14 +1,14 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\InventoryTransaction\Services;
+namespace Hrgweb\InventoryManagement\Domain\InventoryTransaction\Services;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\PosAndInventory\Models\Product;
-use Hrgweb\PosAndInventory\Models\InventoryTransaction;
-use Hrgweb\PosAndInventory\Domain\InventoryTransaction\Data\ProductData;
-use Hrgweb\PosAndInventory\Domain\InventoryTransaction\Data\InventoryTransactionData;
+use Hrgweb\InventoryManagement\Models\Product;
+use Hrgweb\InventoryManagement\Models\InventoryTransaction;
+use Hrgweb\InventoryManagement\Domain\InventoryTransaction\Data\ProductData;
+use Hrgweb\InventoryManagement\Domain\InventoryTransaction\Data\InventoryTransactionData;
 
 class InventoryTransactionService
 {

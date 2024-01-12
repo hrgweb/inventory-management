@@ -1,12 +1,12 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Controllers;
+namespace Hrgweb\InventoryManagement\Controllers;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Hrgweb\PosAndInventory\Domain\Category\Data\CategoryData;
-use Hrgweb\PosAndInventory\Domain\Category\Services\CategoryService;
+use Hrgweb\InventoryManagement\Domain\Category\Data\CategoryData;
+use Hrgweb\InventoryManagement\Domain\Category\Services\CategoryService;
 
 class CategoryController extends Controller
 {

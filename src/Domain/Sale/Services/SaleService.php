@@ -1,16 +1,16 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Sale\Services;
+namespace Hrgweb\InventoryManagement\Domain\Sale\Services;
 
 use Exception;
-use Hrgweb\PosAndInventory\Models\Sale;
-use Hrgweb\PosAndInventory\Models\Order;
-use Hrgweb\PosAndInventory\Models\TransactionSession;
+use Hrgweb\InventoryManagement\Models\Sale;
+use Hrgweb\InventoryManagement\Models\Order;
+use Hrgweb\InventoryManagement\Models\TransactionSession;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\PosAndInventory\Domain\Order\Enums\OrderStatus;
-use Hrgweb\PosAndInventory\Domain\Product\Services\ProductService;
-use Hrgweb\PosAndInventory\Domain\Sale\Enums\TransactionStatus;
+use Hrgweb\InventoryManagement\Domain\Order\Enums\OrderStatus;
+use Hrgweb\InventoryManagement\Domain\Product\Services\ProductService;
+use Hrgweb\InventoryManagement\Domain\Sale\Enums\TransactionStatus;
 
 class SaleService
 {

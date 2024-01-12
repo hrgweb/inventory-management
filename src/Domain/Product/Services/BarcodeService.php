@@ -1,9 +1,9 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Product\Services;
+namespace Hrgweb\InventoryManagement\Domain\Product\Services;
 
 use Picqer\Barcode\BarcodeGeneratorPNG;
-use Hrgweb\PosAndInventory\Domain\Product\Class\Directory;
+use Hrgweb\InventoryManagement\Domain\Product\Class\Directory;
 
 class BarcodeService
 {

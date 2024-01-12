@@ -1,10 +1,10 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Category\Services;
+namespace Hrgweb\InventoryManagement\Domain\Category\Services;
 
-use Hrgweb\PosAndInventory\Models\Category;
+use Hrgweb\InventoryManagement\Models\Category;
 use Exception;
-use Hrgweb\PosAndInventory\Domain\Category\Data\CategoryData;
+use Hrgweb\InventoryManagement\Domain\Category\Data\CategoryData;
 use Illuminate\Support\Facades\Log;
 
 class CategoryService

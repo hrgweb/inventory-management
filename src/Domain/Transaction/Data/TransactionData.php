@@ -1,10 +1,10 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Transaction\Data;
+namespace Hrgweb\InventoryManagement\Domain\Transaction\Data;
 
 use Spatie\LaravelData\Data;
-use Hrgweb\PosAndInventory\Domain\Product\Data\ProductData;
-use Hrgweb\PosAndInventory\Domain\Transaction\Enums\TransactionType;
+use Hrgweb\InventoryManagement\Domain\Product\Data\ProductData;
+use Hrgweb\InventoryManagement\Domain\Transaction\Enums\TransactionType;
 
 class TransactionData extends Data
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Transaction\Enums;
+namespace Hrgweb\InventoryManagement\Domain\Transaction\Enums;
 
 enum TransactionType: string
 {

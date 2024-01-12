@@ -1,12 +1,12 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Controllers;
+namespace Hrgweb\InventoryManagement\Controllers;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Hrgweb\PosAndInventory\Domain\Sale\Data\SaleData;
-use Hrgweb\PosAndInventory\Domain\Sale\Services\TransactionService;
+use Hrgweb\InventoryManagement\Domain\Sale\Data\SaleData;
+use Hrgweb\InventoryManagement\Domain\Sale\Services\TransactionService;
 
 
 class SaleController extends Controller

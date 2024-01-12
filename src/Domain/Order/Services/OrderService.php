@@ -1,12 +1,12 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Order\Services;
+namespace Hrgweb\InventoryManagement\Domain\Order\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Hrgweb\PosAndInventory\Models\Order;
-use Hrgweb\PosAndInventory\Models\Product;
-use Hrgweb\PosAndInventory\Domain\Order\Data\OrderData;
+use Hrgweb\InventoryManagement\Models\Order;
+use Hrgweb\InventoryManagement\Models\Product;
+use Hrgweb\InventoryManagement\Domain\Order\Data\OrderData;
 
 class OrderService
 {

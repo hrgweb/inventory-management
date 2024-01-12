@@ -1,10 +1,10 @@
 {
-  "name": "hrgweb/pos-and-inventory",
+  "name": "hrgweb/inventory-management",
   "description": "Point of Sale and Inventory Management System.",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Hrgweb\\PosAndInventory\\": "src/"
+      "Hrgweb\\InventoryManagement\\": "src/"
     }
   },
   "authors": [
@@ -17,11 +17,10 @@
     "spatie/laravel-data": "*",
     "picqer/php-barcode-generator": "^2.4"
   },
-  "minimum-stability": "dev",
   "extra": {
     "laravel": {
       "providers": [
-        "Hrgweb\\PosAndInventory\\Providers\\PosAndInventoryProvider"
+        "Hrgweb\\InventoryManagement\\Providers\\InventoryManagementProvider"
       ]
     }
   }

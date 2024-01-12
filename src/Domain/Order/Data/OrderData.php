@@ -1,11 +1,11 @@
 <?php
 
-namespace Hrgweb\PosAndInventory\Domain\Order\Data;
+namespace Hrgweb\InventoryManagement\Domain\Order\Data;
 
 use Spatie\LaravelData\Data;
-use Hrgweb\PosAndInventory\Models\Order;
-use Hrgweb\PosAndInventory\Domain\Order\Enums\OrderStatus;
-use Hrgweb\PosAndInventory\Domain\Product\Data\ProductData;
+use Hrgweb\InventoryManagement\Models\Order;
+use Hrgweb\InventoryManagement\Domain\Order\Enums\OrderStatus;
+use Hrgweb\InventoryManagement\Domain\Product\Data\ProductData;
 
 class OrderData extends Data
 {
