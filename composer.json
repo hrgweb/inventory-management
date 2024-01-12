@@ -23,5 +23,7 @@
         "Hrgweb\\InventoryManagement\\Providers\\InventoryManagementProvider"
       ]
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
